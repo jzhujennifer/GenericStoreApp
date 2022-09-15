@@ -1,0 +1,15 @@
+﻿ 
+@model Dictionary<string, decimal>
+
+
+<a class="text-white" asp-controller="ProductSales" asp-action="ShoppingCart">
+    <i class="bi bi-cart"></i>
+    <div>
+        <div>@Model["ItemCount"] # Items</div>
+        <div>@Model["TotalPrice"] $</div>
+    </div>
+</a>   
+
+
+
+

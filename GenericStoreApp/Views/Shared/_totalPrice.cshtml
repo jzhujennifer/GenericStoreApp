@@ -1,0 +1,14 @@
+﻿@inject ApplicationDbContext context
+@using GenericStoreApp.Data
+@using GenericStoreApp.Services
+@model int
+@{
+
+    OrderService service = new OrderService(context);
+
+    var result = service.GetPriceForOrder(Model);
+}
+
+<div>
+   @result.Result
+</div>

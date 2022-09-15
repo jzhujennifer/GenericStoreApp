@@ -1,0 +1,50 @@
+﻿@model GenericStoreApp.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Product Details</h3>
+<hr />
+<div class="row">
+    <div class="col-8">
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+            @if(User.IsInRole("Clients") || User.IsInRole("Administrators")){
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+            }
+        
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+        </dl>
+
+        <div>
+            <a asp-controller="Orders" asp-action="AddToCart" asp-route-id="@Model?.ID" class="btn btn-info">Add to Cart</a>
+            <a asp-action="Index" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <img src="@Url.Content(Model.ImageLink)" width="100%" height="250px" style="border-radius: 5px;border: 1px solid #efefef" />
+    </div>
+</div>

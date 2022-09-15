@@ -1,0 +1,21 @@
+﻿@model System.Collections.Generic.List<string>
+@{
+    ViewData["Title"] = "SortingDropdown";
+
+    var categories = Model.Select(m => new { Value = m.ToString(), Text = m.ToString() });
+   
+
+
+
+    @Html.DropDownList(
+        "Categories",
+        
+        new SelectList(
+            categories,
+            "Value",
+            "Text"
+            ).Distinct(),
+        new { @onchange = "onSelectionChange(this.value)" }
+        )
+
+}

@@ -1,0 +1,89 @@
+﻿@model GenericStoreApp.Models.ContactUs
+
+@{
+    ViewData["Title"] = "Contact";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["message"]</strong>
+    </div>
+}
+<div class="contact contact-sm mb-2 mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1 text-light">
+                    Contact us <small>Feel free to contact us</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well well-sm">
+                <form asp-action="Contact">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Message" class="control-label"></label>
+                        <textarea asp-for="Message" class="form-control"></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <input type="submit" value="Send" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-info">Back to Home</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div>
+                <h4><i class="bi bi-globe2"></i>Our office</h4>
+                <hr />
+                <address>
+                    <strong>ShoppingApp, Inc.</strong><br>
+                    1234 Shopping Ave, Suite 600<br>
+                    Montreal, Qc Canada<br>
+                    <abbr title="Phone">
+                        <i class="bi bi-phone"></i>P:
+                    </abbr>
+                    (123) 456-7890
+                </address>
+                <address>
+                    <strong>Full Name</strong><br>
+                    <a href="mailto:#">first.last@example.com</a>
+                </address>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

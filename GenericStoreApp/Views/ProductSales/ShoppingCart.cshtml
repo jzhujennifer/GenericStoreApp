@@ -1,0 +1,56 @@
+﻿@model IEnumerable<GenericStoreApp.Models.ProductSale>
+
+@{
+    ViewData["Title"] = "ShoppingCart";
+    var email = User.Identity?.Name;
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+ 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ID)
+            </td>
+            <td>
+                 @await Html.PartialAsync("_productTotalPrice", item.ProductSaleID)
+            </td>
+            <td>
+                    <a style="font-size: 40px; text-decoration: none" asp-controller="Orders" asp-action="AddToCart_ShoppingCart"  asp-route-id="@item.ProductID">+</a>
+                    <input disabled style="font-size: 18px; width: 40px"  type="text" value="@item.Quantity" />
+                    <a style="font-size: 40px; text-decoration: none" asp-controller="ProductSales" asp-action="DecrementFromCart" asp-route-id="@item.ProductSaleID">--</a>
+                <a asp-action="Delete" asp-route-id="@item.ProductSaleID">Remove from Cart</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
